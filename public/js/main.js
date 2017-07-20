@@ -1,8 +1,21 @@
 $(document).on('ready', function () {
-	$('.modalMd').off('click').on('click', function () {
-		$('#modalMdContent').load($(this).attr('value'));
-		$('#modalMdTitle').html($(this).attr('title'));
+	$.ajaxSetup({
+		headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
 	});
+
+	$('.modalMd').off('click').on('click', function (e) {
+        $("#modalMd").modal('show');
+        $('#modalMdContent').load($(this).attr('href'));
+        $('#modalMdTitle').html($(this).attr('title'));
+        e.preventDefault();
+    });
+
+    $('.modalLg').off('click').on('click', function (e) {
+        $("#modalLg").modal('show');
+        $('#modalLgContent').load($(this).attr('href'));
+        $('#modalLgTitle').html($(this).attr('title'));
+        e.preventDefault();
+    });
 
 });
 

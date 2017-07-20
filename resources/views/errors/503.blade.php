@@ -14,7 +14,7 @@
                 margin: 0;
                 padding: 0;
                 width: 100%;
-                color: #B0BEC5;
+                color: #F62929;
                 display: table;
                 font-weight: 100;
                 font-family: 'Lato', sans-serif;
@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Be right back.</div>
+                <div class="title"><h4>Anda tidak memiliki hak akses</h4></div>
             </div>
         </div>
     </body>

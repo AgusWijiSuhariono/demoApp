@@ -8,7 +8,7 @@
 		<a href="{{ action('SiteController@create') }}" class="btn btn-success">Create</a>
 	</div>
 	<div class="col-lg-1">
-		<a href="#" value="{{ action('SiteController@create') }}" class="btn btn-info modalMd" title="Create data dari Ajax" data-toggle="modal" data-target="#modalMd">Create From Modal</a>
+		<a href="{{ action('SiteController@create') }}" class="btn btn-info modalMd" title="Create data dari Ajax">Create From Modal</a>
 	</div>
 </div>
 <div class="row" style="margin-top:10px">
@@ -33,7 +33,7 @@
 					<td>{{ $row->isi }}</td>
 					<td>{{ $row->status }}</td>
 					<td>
-						<a href="#" value="{{ action('SiteController@edit',['id'=>$row->id]) }}" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-pencil"></i></a>
+						<a href="#" value="{{ action('SiteController@edit',['id'=>$row->id]) }}" class="btn btn-xs btn-success modalMd"><i class="glyphicon glyphicon-pencil"></i></a>
 						<form action="{{ action('SiteController@destroy',['id'=>$row->id]) }}" method="POST">
 							{{ csrf_field() }}
 							{{ method_field('DELETE') }}

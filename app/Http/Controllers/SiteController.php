@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\TbBlog;
 use App\TbKategori;
 use App\Http\Requests\SiteRequest;
+use Mail;
 
 class SiteController extends Controller
 {
@@ -134,5 +135,40 @@ class SiteController extends Controller
         \Session::flash('flash_message','data berhasil di hapus');
 
         return redirect()->action('SiteController@index');
+    }
+
+    public function formMail(){
+        return view('site.formMail');
+    }
+
+    public function sendMail(Request $request){
+        $this->validate($request,[
+                'email' => 'required',
+                'subjek' => 'required',
+                'pesan' =>'required',
+                'opsi_template' => 'required'
+            ]);
+        if($request->opsi_template==2){
+            $sendMail = Mail::raw($request->pesan, function ($message)use($request) {
+                $message->from('bijiagus@gmail.com','Agus Wiji Suhariono');
+                $message->subject($request->subjek);
+                $message->to($request->email);
+            });
+        }else{
+            $sendMail = Mail::send('email.template', ['request'=>$request], function ($message)use($request){
+                $message->from('bijiagus@gmail.com','Agus Wiji Suhariono');
+                $message->subject($request->subjek);
+                $message->to($request->email);
+            });
+        }
+        if($sendMail){
+             \Session::flash('flash_message','Email berhasil dikirim');
+
+            return redirect()->action('SiteController@formMail');
+        }
+    }
+
+    public function template(Request $request){
+        return view('email.template',compact('request'));
     }
 }
